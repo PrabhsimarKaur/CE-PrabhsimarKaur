@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UrbanThreads — a clothing store mini project built with HTML, CSS and JavaScript.">
+  <title>UrbanThreads | Wear Your Vibe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="#"><span class="hanger">♧</span><span>UrbanThreads<small>WEAR YOUR VIBE</small></span></a>
+  <nav><a href="#home">Home</a><a class="active" href="#shop">Shop</a><a href="#about">About</a></nav>
+  <div class="header-actions"> 
+    <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search for clothes..." aria-label="Search clothes"></label>
+    <button class="icon-button" id="accountButton" aria-label="Account">♙</button>
+    <button class="cart-button" id="cartJump" aria-label="Go to cart">🛒 <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-copy"><span class="eyebrow">NEW SEASON · NEW YOU</span><h1>Style for Every You</h1><p>Trendy. Comfortable. Affordable.</p><a class="button dark" href="#shop">Shop Now <span>→</span></a></div>
+    <div class="hero-image" role="img" aria-label="Clothing rack with neutral seasonal fashion"></div>
+  </section>
+
+  <section class="shop-layout" id="shop">
+    <aside class="filters">
+      <div class="filter-heading"><h2>Filter Products</h2><button id="clearFilters" class="clear-button">Clear</button></div>
+      <div class="filter-group"><h3>Category</h3>
+        <label class="check"><input type="checkbox" name="category" value="all" checked> All Categories</label>
+        <label class="check"><input type="checkbox" name="category" value="Women"> Women</label>
+        <label class="check"><input type="checkbox" name="category" value="Men"> Men</label>
+        <label class="check"><input type="checkbox" name="category" value="Kids"> Kids</label>
+      </div>
+      <div class="filter-group"><h3>Price Range</h3><input id="priceRange" class="range" type="range" min="0" max="4000" step="100" value="4000"><div class="range-labels"><span>₹0</span><span id="priceLabel">₹4,000+</span></div></div>
+      <div class="filter-group"><h3>Size</h3><div class="size-options" id="sizeOptions">
+        <button type="button" data-size="XS">XS</button><button type="button" data-size="S">S</button><button type="button" data-size="M">M</button><button type="button" data-size="L">L</button><button type="button" data-size="XL">XL</button><button type="button" data-size="XXL">XXL</button>
+      </div></div>
+      <div class="filter-group"><h3>Color</h3><div class="colors">
+        <button class="swatch black" data-color="Black" aria-label="Black" title="Black"></button><button class="swatch white" data-color="White" aria-label="White" title="White"></button><button class="swatch pink" data-color="Pink" aria-label="Pink" title="Pink"></button><button class="swatch blue" data-color="Blue" aria-label="Blue" title="Blue"></button><button class="swatch green" data-color="Green" aria-label="Green" title="Green"></button><button class="swatch beige" data-color="Beige" aria-label="Beige" title="Beige"></button>
+      </div></div>
+      <div class="filter-group"><h3>Sort By</h3><select id="sortSelect"><option value="featured">Featured</option><option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option><option value="rating">Top Rated</option><option value="name">Name: A to Z</option></select></div>
+    </aside>
+
+    <section class="collection">
+      <div class="collection-head"><div><span class="eyebrow">MADE FOR YOUR EVERYDAY</span><h2>Our Collection</h2><p id="productCount">Showing products</p></div><label class="mobile-sort">Sort: <select id="sortSelectMobile"><option value="featured">Featured</option><option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option><option value="rating">Top Rated</option><option value="name">Name: A to Z</option></select></label></div>
+      <div class="category-tabs"><button class="tab active" data-tab="all">All styles</button><button class="tab" data-tab="Women">Women</button><button class="tab" data-tab="Men">Men</button><button class="tab" data-tab="Kids">Kids</button></div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="no-results hidden" id="noResults"><div>♡</div><h3>No styles found</h3><p>Try changing your filters or search.</p><button class="button dark" id="resetSearch">Show all styles</button></div>
+    </section>
+  </section>
+
+  <section class="cart-section" id="cart">
+    <div class="section-title"><div><span class="eyebrow">YOUR PICKS</span><h2>Your Shopping Bag <span class="count-pill" id="bagCount">0</span></h2></div><button class="clear-button" id="continueShopping">← Continue shopping</button></div>
+    <div class="cart-layout">
+      <div class="cart-list"><div class="cart-list-head"><span>PRODUCT</span><span>QUANTITY</span><span>SUBTOTAL</span></div><div id="cartItems"></div><div id="emptyCart" class="empty-cart"><span>🛍</span><h3>Your bag is waiting for something nice</h3><p>Explore the collection and find your next favourite.</p><a href="#shop" class="button dark">Browse clothes</a></div></div>
+      <aside class="summary">
+        <h3>Order Summary</h3><div class="summary-row"><span>Subtotal</span><strong id="subtotal">₹0.00</strong></div><div class="summary-row"><span>Shipping</span><strong id="shipping">₹0.00</strong></div><p class="shipping-note" id="shippingNote">Free shipping on orders over ₹999</p>
+        <h4>DISCOUNT COUPON</h4><form id="couponForm" class="coupon-form"><input id="couponInput" placeholder="Enter code (STYLE10)" aria-label="Coupon code"><button type="submit">Apply</button></form><p id="couponMessage" class="coupon-message">Try <strong>STYLE10</strong> for 10% off.</p>
+        <div class="summary-row discount-row hidden" id="discountRow"><span>Discount (10%)</span><strong id="discount">−₹0.00</strong></div><div class="total-row"><span>Total</span><strong id="total">₹0.00</strong></div>
+   
+      </aside>
+    </div>
+  </section>
+
+  <section class="benefits" id="about"><div><span>♧</span><strong>Free Shipping</strong><small>On orders above ₹999</small></div><div><span>♢</span><strong>Secure Checkout</strong><small>Safe demo experience</small></div><div><span>↻</span><strong>Easy Returns</strong><small>7-day return policy</small></div><div><span>♡</span><strong>Here to Help</strong><small>Friendly customer support</small></div></section>
+</main>
+<footer><a class="logo footer-logo" href="#"><span class="hanger">♧</span><span>UrbanThreads<small>WEAR YOUR VIBE</small></span></a><p>Find your fit. Express your style.</p><span>© <span id="year"></span> UrbanThreads · Student mini project</span></footer>
+
+<div class="modal-backdrop hidden" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><div class="modal"><button class="modal-close" id="closeModal" aria-label="Close">×</button><div id="checkoutView"><span class="eyebrow">ALMOST YOURS</span><h2 id="checkoutTitle">Checkout</h2><p class="muted">Enter your details to place a demo order.</p><div class="modal-total"><span>Order total</span><strong id="modalTotal">₹0.00</strong></div>
+<form id="checkoutForm" class="checkout-form"><label>Full Name<input name="name" id="customerName" required minlength="2" placeholder="Your full name"></label><label>Email Address<input name="email" type="email" required placeholder="you@example.com"></label><label>Phone Number<input name="phone" type="tel" required pattern="[0-9 +()-]{10,}" placeholder="Your phone number"></label><label>Delivery Address<textarea name="address" required minlength="8" placeholder="House, street, city, PIN code"></textarea></label><label>Payment Method<select id="paymentMethod"><option>Cash on Delivery</option><option>UPI (Demo)</option><option>Card (Demo)</option></select></label><button class="button dark checkout-submit" type="submit">Place Demo Order <span>→</span></button><small class="disclaimer">This is a front-end demo. No payment is processed and no real order is sent.</small></form></div>
+<div id="successView" class="success-view hidden"><div class="success-icon">✓</div><span class="eyebrow">ORDER CONFIRMED</span><h2>Looking good!</h2><p id="successMessage">Your demo order is confirmed.</p><div class="order-id">ORDER ID <strong id="orderId"></strong></div><button class="button dark" id="finishOrder">Continue Shopping</button></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
